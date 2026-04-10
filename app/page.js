@@ -43,7 +43,7 @@ export default function Home() {
       <section className="glass p-10 mb-20">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="text-gray-400">
-          I am a Forex strategist focused on GBP/USD and major pairs. I provide
+          I am Micheal Idenyi, A Forex strategist focused on GBP/USD and major pairs. I provide
           high-probability setups, risk management strategies and consistent signals.
         </p>
       </section>
