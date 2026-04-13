@@ -1,7 +1,16 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
 
 export default function Home() {
+  const [price, setPrice] = useState(null);
+
+useEffect(() => {
+  fetch("https://api.twelvedata.com/price?symbol=GBP/USD&apikey=05fd3136e64a4ee88dd8c0331ac12055")
+    .then(res => res.json())
+    .then(data => setPrice(data.price));
+}, []);
+
   return (
     <main className="text-white bg-[#0b0f19] min-h-screen px-6">
 
@@ -10,28 +19,19 @@ export default function Home() {
         <section className="py-16">
 
         <h1 className="text-5xl font-bold mb-4">
-          Laughter Strategist
+          Laughter-The-Strategist
         </h1>
         <p className="text-gray-400">
           Professional Forex Signals & Market Analysis
         </p>
       </section>
 
-      {/* TOP STATS BAR */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-
-        {[
-          { pair: "GBP/USD", price: "1.2500" },
-          { pair: "EUR/USD", price: "1.0800" },
-          { pair: "USD/JPY", price: "150.20" },
-          { pair: "XAU/USD", price: "2300" },
-        ].map((item, i) => (
-          <div key={i} className="glass p-4 text-center">
-            <p className="text-gray-400">{item.pair}</p>
-            <h2 className="text-green-400 text-xl">{item.price}</h2>
-          </div>
-        ))}
-      </section>
+      <div className="glass p-4 text-center">
+  <p className="text-gray-400">GBP/USD</p>
+  <h2 className="text-green-400 text-xl">
+    {price ? price : "Loading..."}
+  </h2>
+</div>
 
       {/* MAIN GRID */}
       <section className="grid md:grid-cols-3 gap-6">
@@ -112,6 +112,91 @@ export default function Home() {
         </div>
 
       </section>
+
+      <section className="glass p-10 mt-10">
+  <h2 className="text-2xl mb-6">FAQs</h2>
+
+  <div className="space-y-4 text-gray-400">
+    <p><strong>Are your signals guaranteed?</strong><br/>No. Forex trading is risky and profits are not guaranteed.</p>
+
+    <p><strong>Do you offer mentorship?</strong><br/>Yes. We provide training and guidance for traders.</p>
+
+    <p><strong>Can beginners join?</strong><br/>Absolutely. All levels are welcome.</p>
+  </div>
+</section>
+
+<section className="glass p-10 mt-10">
+  <h2 className="text-2xl mb-6">Get Started</h2>
+
+  <form className="grid gap-4">
+
+    <input placeholder="Full Name" className="p-3 bg-black/40 rounded"/>
+    <input placeholder="Email Address" className="p-3 bg-black/40 rounded"/>
+
+    <input placeholder="Interest (Signals / Mentorship)" className="p-3 bg-black/40 rounded"/>
+
+    <textarea placeholder="Your Learning Goals" className="p-3 bg-black/40 rounded"></textarea>
+
+    <button className="bg-green-500 p-3 rounded hover:scale-105">
+      Submit
+    </button>
+
+  </form>
+
+  <section className="grid md:grid-cols-3 gap-6 mt-10">
+
+  {/* BASIC */}
+  <div className="glass p-6">
+    <h3 className="text-xl mb-2">Student</h3>
+    <p className="text-green-400 mb-4">$50/month</p>
+    <p className="text-gray-400">Access to learning materials</p>
+  </div>
+
+  {/* VIP */}
+  <div className="glass p-6 border border-green-400">
+    <h3 className="text-xl mb-2">VIP</h3>
+    <p className="text-green-400 mb-4">$150/month</p>
+    <p className="text-gray-400">Signals + mentorship</p>
+  </div>
+
+  {/* VIP PREMIUM */}
+  <div className="glass p-6">
+    <h3 className="text-xl mb-2">VIP Premium</h3>
+    <p className="text-green-400 mb-4">$300/month</p>
+    <p className="text-gray-400">Full access + 1-on-1 coaching</p>
+  </div>
+
+</section>
+
+<p className="text-gray-500 mt-6">
+  Trading Forex involves risk. Signals are not guaranteed to be profitable and losses may occur.
+</p>
+
+</section>
+
+{/* ACTIVITY FEED */}
+<section className="glass p-6 mt-10">
+  <h2 className="text-xl mb-3">Live Activity</h2>
+  <p className="text-green-400">GBP/USD hit TP ✔</p>
+  <p className="text-red-400">EUR/USD SL hit ✖</p>
+</section>
+
+{/* TRADE HISTORY */}
+<section className="glass p-6 mt-10">
+  <h2 className="text-xl mb-3">Trade History</h2>
+  <p className="text-gray-400">
+    Last 10 trades displayed here
+  </p>
+</section>
+
+{/* MARKET SESSION */}
+<section className="glass p-6 mt-10 mb-20">
+  <h2 className="text-xl mb-3">Market Session</h2>
+  <p className="text-green-400">
+    London Session Active
+  </p>
+</section>
+
 
     </main>
   );

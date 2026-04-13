@@ -21,6 +21,12 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </SessionProvider>
+        <div className="fixed bottom-6 left-6">
+  <button className="bg-purple-500 p-4 rounded-full">
+    💬
+  </button>
+</div>
+
       </body>
     </html>
   );
